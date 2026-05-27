@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jothidam & Rasa Mani | Vasthu Entiram</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --gold-dark: #A8892A;
+    --deep-navy: #0A0E1A;
+    --navy: #111827;
+    --navy-mid: #1a2540;
+    --crimson: #8B1A2E;
+    --crimson-light: #C42545;
+    --emerald: #0D5C3A;
+    --emerald-light: #16A066;
+    --cream: #FDF6E3;
+    --text-light: #F5EDD5;
+    --text-muted: #9A8C6A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--deep-navy);
+    color: var(--text-light);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 14, 26, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-contact-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--deep-navy);
+    background: var(--gold);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-contact-btn:hover { background: var(--gold-light); transform: scale(1.03); }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ═══════════════════════════════════════
+     HOME PAGE
+  ═══════════════════════════════════════ */
+  #home {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .home-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, #1B2A5E 0%, #0A0E1A 65%);
+    z-index: 0;
+  }
+
+  /* Star field */
+  .stars {
+    position: absolute; inset: 0; z-index: 1;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle var(--d, 3s) infinite ease-in-out alternate;
+  }
+
+  @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+
+  /* Mandala bg decoration */
+  .mandala-bg {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.08);
+    z-index: 1;
+  }
+  .mandala-bg::before {
+    content: '';
+    position: absolute; inset: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.06);
+  }
+  .mandala-bg::after {
+    content: '';
+    position: absolute; inset: 90px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.05);
+  }
+
+  .home-hero {
+    position: relative; z-index: 5;
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 140px;
+    text-align: center;
+  }
+
+  .om-symbol {
+    font-size: 3.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    animation: pulse-glow 3s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(212,175,55,0.5));
+  }
+  @keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); }
+    50% { filter: drop-shadow(0 0 30px rgba(212,175,55,0.8)); }
+  }
+
+  .home-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    color: var(--gold);
+    line-height: 1.15;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .home-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--gold-light);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+  }
+  .home-tagline {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* Service Cards on Home */
+  .home-services {
+    position: relative; z-index: 5;
+    display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+    padding: 2rem 2rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.2);
+    padding: 2.5rem 2rem;
+    width: 280px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    text-align: center;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+  .service-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+    animation: float 4s ease-in-out infinite;
+  }
+  .service-card:nth-child(2) .card-icon { animation-delay: 1.5s; }
+  .service-card:nth-child(3) .card-icon { animation-delay: 3s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+  }
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .card-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .card-btn:hover { background: var(--gold); color: var(--deep-navy); }
+
+  .divider-line {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 3rem;
+  }
+
+
+  /* ═══════════════════════════════════════
+     ASTROLOGY PAGE
+  ═══════════════════════════════════════ */
+  #astrology {
+    background: radial-gradient(ellipse at 30% 20%, #1f0a3a 0%, #0d0820 50%, #0A0E1A 100%);
+    padding-top: 80px;
+  }
+
+  .astro-hero {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+  }
+  .page-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(212,175,55,0.4);
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .page-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .page-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+  }
+
+  /* Zodiac Wheel */
+  .zodiac-wheel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    position: relative;
+  }
+
+  .wheel-container {
+    position: relative;
+    width: 480px; height: 480px;
+    max-width: 90vw; max-height: 90vw;
+  }
+
+  .wheel-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.15);
+  }
+  .ring-1 { inset: 0; }
+  .ring-2 { inset: 40px; }
+  .ring-3 { inset: 80px; }
+
+  .zodiac-signs-orbit {
+    position: absolute; inset: 0;
+    animation: spin-slow 60s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .zodiac-sign-item {
+    position: absolute;
+    width: 64px; height: 64px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .zodiac-sign-item:hover { transform: scale(1.2); }
+
+  .sign-symbol {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.7));
+    animation: counter-spin 60s linear infinite;
+  }
+  @keyframes counter-spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+  .sign-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-top: 2px;
+    animation: counter-spin 60s linear infinite;
+  }
+
+  .wheel-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.15), rgba(212,175,55,0.03));
+    border: 1px solid rgba(212,175,55,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .center-om { font-size: 2.5rem; color: var(--gold); animation: pulse-glow 3s infinite; }
+  .center-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* Selected sign panel */
+  .sign-detail {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.2);
+    padding: 2rem;
+    margin: 1rem;
+    max-width: 500px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .sign-detail h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .sign-detail .detail-symbol { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .sign-detail p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* Rasi grid */
+  .rasi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+  .rasi-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    padding: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .rasi-card:hover {
+    border-color: var(--gold);
+    background: rgba(212,175,55,0.07);
+    transform: translateY(-3px);
+  }
+  .rasi-symbol { font-size: 1.8rem; margin-bottom: 0.4rem; display: block; }
+  .rasi-name-en {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .rasi-name-ta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .rasi-lord { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+
+  /* Astrology info boxes */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+  }
+  .info-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    padding: 1.5rem;
+  }
+  .info-box h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+  }
+  .info-box p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ═══════════════════════════════════════
+     RASA MANI PAGE
+  ═══════════════════════════════════════ */
+  #rasamani {
+    background: radial-gradient(ellipse at 70% 30%, #0a2012 0%, #040e08 50%, #0A0E1A 100%);
+    padding-top: 80px;
+  }
+
+  .bead-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem;
+  }
+
+  /* Interactive bead display */
+  .bead-canvas {
+    position: relative;
+    width: 400px; height: 400px;
+    max-width: 85vw; max-height: 85vw;
+  }
+
+  .bead-orbit {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1px dashed rgba(22,160,102,0.2);
+    animation: spin-slow 20s linear infinite;
+  }
+  .bead-orbit-2 {
+    inset: 60px;
+    animation: spin-slow 15s linear infinite reverse;
+  }
+  .bead-orbit-3 { inset: 110px; animation: spin-slow 10s linear infinite; }
+
+  .main-bead {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #7FDFB0, #0D5C3A 60%, #041a0e);
+    box-shadow:
+      0 0 30px rgba(22,160,102,0.5),
+      inset -6px -6px 12px rgba(0,0,0,0.5),
+      inset 4px 4px 8px rgba(127,223,176,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: bead-pulse 3s ease-in-out infinite;
+    z-index: 5;
+  }
+  @keyframes bead-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(22,160,102,0.4), inset -6px -6px 12px rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 50px rgba(22,160,102,0.8), inset -6px -6px 12px rgba(0,0,0,0.5); }
+  }
+
+  .orbit-bead {
+    position: absolute;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .orbit-bead:hover { transform: scale(1.4) !important; }
+
+  /* Benefit cards for rasa mani */
+  .benefit-strip {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+  .benefit-pill {
+    background: rgba(13,92,58,0.25);
+    border: 1px solid rgba(22,160,102,0.3);
+    padding: 0.5rem 1.2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--emerald-light);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .benefit-pill:hover, .benefit-pill.active {
+    background: rgba(22,160,102,0.3);
+    border-color: var(--emerald-light);
+    color: #7FDFB0;
+  }
+
+  .bead-info-panel {
+    background: rgba(13,92,58,0.15);
+    border: 1px solid rgba(22,160,102,0.25);
+    max-width: 600px;
+    margin: 1.5rem auto;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .bead-info-panel h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--emerald-light);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+  .bead-info-panel p { color: var(--text-muted); line-height: 1.8; font-size: 0.9rem; }
+
+  .planet-beads {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 3rem auto 4rem;
+    padding: 0 2rem;
+  }
+  .planet-bead-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(22,160,102,0.2);
+    padding: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .planet-bead-card:hover {
+    border-color: var(--emerald-light);
+    background: rgba(22,160,102,0.08);
+    transform: translateY(-4px);
+  }
+  .planet-bead-gem {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .planet-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--emerald-light);
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+  }
+  .planet-ta { font-size: 0.8rem; color: var(--text-muted); }
+  .bead-color-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    color: var(--emerald-light);
+    border: 1px solid rgba(22,160,102,0.3);
+    padding: 2px 8px;
+    margin-top: 6px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+  }
+
+
+  /* ═══════════════════════════════════════
+     VASTHU PAGE
+  ═══════════════════════════════════════ */
+  #vasthu {
+    background: radial-gradient(ellipse at 20% 60%, #1a0a05 0%, #100804 50%, #0A0E1A 100%);
+    padding-top: 80px;
+  }
+
+  /* Vastu Purusha Mandala */
+  .mandala-section {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 3rem 2rem;
+  }
+
+  .vastu-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 2px;
+    width: 360px; height: 360px;
+    max-width: 85vw; max-height: 85vw;
+    border: 2px solid rgba(212,175,55,0.4);
+    position: relative;
+  }
+  .vastu-cell {
+    background: rgba(212,175,55,0.04);
+    border: 1px solid rgba(212,175,55,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(0.35rem, 1.5vw, 0.5rem);
+    color: rgba(212,175,55,0.6);
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    text-align: center;
+    padding: 2px;
+    line-height: 1.2;
+  }
+  .vastu-cell:hover {
+    background: rgba(212,175,55,0.15);
+    color: var(--gold);
+  }
+  .vastu-cell.brahma { grid-column: 4/7; grid-row: 4/7; background: rgba(212,175,55,0.12); color: var(--gold); font-size: 1.2rem; }
+  .vastu-cell.corner { background: rgba(139,26,46,0.15); }
+  .vastu-cell.highlight { background: rgba(212,175,55,0.1); color: var(--gold-light); }
+
+  /* Compass rose */
+  .compass {
+    position: relative;
+    width: 80px; height: 80px;
+    margin: 1rem auto;
+  }
+  .compass-circle {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    position: relative;
+  }
+  .compass-n, .compass-s, .compass-e, .compass-w {
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .compass-n { top: 4px; left: 50%; transform: translateX(-50%); }
+  .compass-s { bottom: 4px; left: 50%; transform: translateX(-50%); }
+  .compass-e { right: 4px; top: 50%; transform: translateY(-50%); }
+  .compass-w { left: 4px; top: 50%; transform: translateY(-50%); }
+
+  /* Direction cards */
+  .direction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+  .dir-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    padding: 1.2rem;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dir-card:hover {
+    border-color: var(--gold);
+    background: rgba(212,175,55,0.05);
+  }
+  .dir-header {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .dir-icon { font-size: 1.4rem; }
+  .dir-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .dir-deity {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .dir-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* Vasthu tips */
+  .vasthu-tips {
+    max-width: 700px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+  }
+  .tip-item {
+    display: flex; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    transition: all 0.3s;
+  }
+  .tip-item:hover { padding-left: 0.5rem; }
+  .tip-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    color: rgba(212,175,55,0.3);
+    min-width: 40px;
+    line-height: 1;
+  }
+  .tip-content h5 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+  }
+  .tip-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+
+  /* ═══════════════════════════════════════
+     CONTACT MODAL
+  ═══════════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #0f1626;
+    border: 1px solid rgba(212,175,55,0.35);
+    padding: 3rem;
+    max-width: 480px;
+    width: 90%;
+    position: relative;
+    animation: modal-in 0.3s ease;
+  }
+  @keyframes modal-in { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none;
+    color: var(--text-muted); font-size: 1.5rem;
+    cursor: pointer; line-height: 1;
+  }
+  .modal-close:hover { color: var(--gold); }
+  .modal h3 {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold); font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .modal p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(212,175,55,0.15);
+    margin-bottom: 0.75rem;
+    transition: border-color 0.3s;
+  }
+  .contact-item:hover { border-color: rgba(212,175,55,0.4); }
+  .contact-icon { font-size: 1.5rem; min-width: 32px; }
+  .contact-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .contact-value { font-size: 0.9rem; color: var(--text-light); margin-top: 2px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+  footer .footer-om { font-size: 1.5rem; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+
+  /* Scroll prompt */
+  .scroll-hint {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    padding: 1rem;
+    opacity: 0.7;
+  }
+
+  /* Section head */
+  .section-head {
+    text-align: center;
+    padding: 2rem 2rem 1rem;
+  }
+  .section-head h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+  }
+  .section-head h3::before, .section-head h3::after {
+    content: '✦';
+    margin: 0 1rem;
+    opacity: 0.5;
+    font-size: 0.8em;
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .wheel-container { width: 300px; height: 300px; }
+    .vastu-grid { width: 270px; height: 270px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">☽ ஜோதிடம்</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('astrology')">Astrology</a></li>
+    <li><a href="#" onclick="showPage('rasamani')">Rasa Mani</a></li>
+    <li><a href="#" onclick="showPage('vasthu')">Vasthu Entiram</a></li>
+  </ul>
+  <button class="nav-contact-btn" onclick="openContact()">Contact Us</button>
+</nav>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div id="home" class="page active">
+  <div class="home-bg"></div>
+  <div class="stars" id="stars"></div>
+  <div class="mandala-bg"></div>
+
+  <div class="home-hero">
+    <div class="om-symbol">ॐ</div>
+    <h1 class="home-title">Jothidam & Rasa Mani</h1>
+    <p class="home-subtitle">Vasthu Entiram</p>
+    <div class="divider-line"></div>
+    <p class="home-tagline">Ancient wisdom guiding modern lives — unlock the cosmic blueprint of your destiny through authentic Vedic astrology, sacred mercury beads, and divine spatial harmony.</p>
+  </div>
+
+  <div class="home-services">
+    <div class="service-card" onclick="showPage('astrology')">
+      <span class="card-icon">🌟</span>
+      <h3 class="card-title">ஜோதிடம் · Jothidam</h3>
+      <p class="card-desc">Discover your birth chart, planetary positions, and the cosmic energies shaping your life through 12 sacred Rasis.</p>
+      <button class="card-btn">Explore Astrology →</button>
+    </div>
+
+    <div class="service-card" onclick="showPage('rasamani')">
+      <span class="card-icon">💎</span>
+      <h3 class="card-title">ரச மணி · Rasa Mani</h3>
+      <p class="card-desc">Sacred mercury bead talismans handcrafted with mantras to balance planetary energies and attract abundance.</p>
+      <button class="card-btn">Explore Rasa Mani →</button>
+    </div>
+
+    <div class="service-card" onclick="showPage('vasthu')">
+      <span class="card-icon">🏛️</span>
+      <h3 class="card-title">வாஸ்து · Vasthu Entiram</h3>
+      <p class="card-desc">Align your living space with the five elements and cosmic directions to invite peace, prosperity, and positive energy.</p>
+      <button class="card-btn">Explore Vasthu →</button>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-om">ॐ</span>
+    <span>© 2024 Jothidam & Rasa Mani · All Sacred Rights Reserved</span>
+  </footer>
+</div>
+
+<!-- ═══ ASTROLOGY PAGE ═══ -->
+<div id="astrology" class="page">
+  <div class="astro-hero">
+    <div class="page-badge">Vedic · Tamil</div>
+    <h2 class="page-title">ஜோதிட சாஸ்திரம்</h2>
+    <p class="page-sub">The Sacred Science of the Stars</p>
+  </div>
+
+  <div class="zodiac-wheel-section">
+    <div class="wheel-container" id="wheelContainer">
+      <div class="wheel-ring ring-1"></div>
+      <div class="wheel-ring ring-2"></div>
+      <div class="wheel-ring ring-3"></div>
+      <div class="zodiac-signs-orbit" id="zodiacOrbit"></div>
+      <div class="wheel-center">
+        <div class="center-om">ॐ</div>
+        <div class="center-text">NAVAGRAHA</div>
+      </div>
+    </div>
+    <p class="scroll-hint">✦ Click any sign to learn more ✦</p>
+  </div>
+
+  <div class="sign-detail" id="signDetail">
+    <div class="detail-symbol" id="detailSymbol">☿</div>
+    <h3 id="detailName">Mesha · மேஷம்</h3>
+    <p id="detailInfo">Click on any zodiac sign in the wheel above to see its details, ruling planet, element, and Tamil significance.</p>
+  </div>
+
+  <div class="divider-line" style="margin: 2rem auto;"></div>
+  <div class="section-head"><h3>12 Rasi — The Sacred Signs</h3></div>
+
+  <div class="rasi-grid" id="rasiGrid"></div>
+
+  <div class="divider-line" style="margin: 2rem auto;"></div>
+  <div class="section-head"><h3>Our Astrology Services</h3></div>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>📜 Janma Kundali</h4>
+      <p>Detailed birth chart analysis covering all 12 houses, planetary placements, and their influence on your life's key areas — career, relationships, health, and finances.</p>
+    </div>
+    <div class="info-box">
+      <h4>🪐 Dasa Bhukti</h4>
+      <p>Precise timing predictions using the Vimshottari Dasa system. Understand which planetary period is active in your life and what changes to expect.</p>
+    </div>
+    <div class="info-box">
+      <h4>💑 Jathagam Porutham</h4>
+      <p>Marriage compatibility analysis using traditional Tamil methods — 10 Porutham matching with detailed report on the couple's compatibility score.</p>
+    </div>
+    <div class="info-box">
+      <h4>🌙 Prasna Jothidam</h4>
+      <p>Instant answers to your urgent questions using Prasna (horary) astrology — no birth details needed. Get guidance based on the moment you ask.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-om">ॐ</span>
+    <span>© 2024 Jothidam & Rasa Mani · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">← Back to Home</a></span>
+  </footer>
+</div>
+
+<!-- ═══ RASA MANI PAGE ═══ -->
+<div id="rasamani" class="page">
+  <div class="astro-hero">
+    <div class="page-badge" style="border-color:rgba(22,160,102,0.4); color:var(--emerald-light)">Sacred · Handcrafted</div>
+    <h2 class="page-title" style="color:var(--emerald-light)">ரச மணி</h2>
+    <p class="page-sub">Mercury Beads — Paramaparuthu</p>
+  </div>
+
+  <div class="bead-showcase">
+    <div class="bead-canvas" id="beadCanvas">
+      <div class="bead-orbit"></div>
+      <div class="bead-orbit bead-orbit-2"></div>
+      <div class="bead-orbit bead-orbit-3"></div>
+      <div class="main-bead" id="mainBead">☿</div>
+    </div>
+  </div>
+
+  <div class="benefit-strip" id="benefitStrip">
+    <div class="benefit-pill active" onclick="showBeadInfo('health', event)">Health & Longevity</div>
+    <div class="benefit-pill" onclick="showBeadInfo('wealth', event)">Wealth & Prosperity</div>
+    <div class="benefit-pill" onclick="showBeadInfo('protection', event)">Protection</div>
+    <div class="benefit-pill" onclick="showBeadInfo('spiritual', event)">Spiritual Growth</div>
+    <div class="benefit-pill" onclick="showBeadInfo('planetary', event)">Planetary Balance</div>
+  </div>
+
+  <div class="bead-info-panel" id="beadInfoPanel">
+    <h3>Health & Longevity</h3>
+    <p>Rasa Mani (mercury beads) are believed to emit subtle vibrations that strengthen the body's natural healing energy. Worn as a pendant, they are said to regulate the body's electromagnetic field, improve immunity, and bring vitality. Ancient Siddha texts describe purified mercury as the essence of the five elements.</p>
+  </div>
+
+  <div class="divider-line" style="margin: 2rem auto; background: linear-gradient(90deg, transparent, var(--emerald-light), transparent);"></div>
+  <div class="section-head"><h3 style="color:var(--emerald-light)">9 Navagraha Mani</h3></div>
+
+  <p style="text-align:center; color:var(--text-muted); font-size:0.88rem; max-width:500px; margin: 0 auto 2rem; padding: 0 2rem; line-height:1.7;">
+    Each sacred bead is hand-crafted and corresponds to one of the nine celestial bodies, each carrying unique healing and energetic properties.
+  </p>
+
+  <div class="planet-beads" id="planetBeads"></div>
+
+  <div class="section-head"><h3 style="color:var(--emerald-light)">How It's Made</h3></div>
+  <div class="info-grid" style="margin-bottom: 4rem;">
+    <div class="info-box" style="border-color: rgba(22,160,102,0.2);">
+      <h4 style="color:var(--emerald-light)">🌿 Purification</h4>
+      <p>Raw mercury undergoes an 18-step purification process using herbal decoctions as prescribed in classical Siddha texts to remove all toxicity.</p>
+    </div>
+    <div class="info-box" style="border-color: rgba(22,160,102,0.2);">
+      <h4 style="color:var(--emerald-light)">🔮 Solidification</h4>
+      <p>Purified mercury is bound with specific herbs and minerals using ancient Kaya Kalpa techniques, solidified through prolonged ritual process.</p>
+    </div>
+    <div class="info-box" style="border-color: rgba(22,160,102,0.2);">
+      <h4 style="color:var(--emerald-light)">📿 Consecration</h4>
+      <p>Each completed bead is consecrated with 1,008 repetitions of specific Navagraha mantras during auspicious planetary timings.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-om" style="color:var(--emerald-light)">☿</span>
+    <span>© 2024 Jothidam & Rasa Mani · <a href="#" onclick="showPage('home')" style="color:var(--emerald-light);text-decoration:none;">← Back to Home</a></span>
+  </footer>
+</div>
+
+<!-- ═══ VASTHU PAGE ═══ -->
+<div id="vasthu" class="page">
+  <div class="astro-hero">
+    <div class="page-badge" style="border-color:rgba(212,175,55,0.4);">Ancient · Sacred</div>
+    <h2 class="page-title">வாஸ்து ஏந்திரம்</h2>
+    <p class="page-sub">Science of Vedic Architecture & Space Harmony</p>
+  </div>
+
+  <div class="mandala-section">
+    <p style="text-align:center; color:var(--text-muted); font-size:0.85rem; margin-bottom: 1.5rem; font-family:'Cinzel',serif; letter-spacing:2px;">VASTU PURUSHA MANDALA</p>
+    <div class="vastu-grid" id="vastuGrid"></div>
+    <div style="display:flex; align-items:center; gap:3rem; margin-top: 1rem;">
+      <div class="compass">
+        <div class="compass-circle">
+          <span class="compass-n">N</span>
+          <span class="compass-s">S</span>
+          <span class="compass-e">E</span>
+          <span class="compass-w">W</span>
+          ✦
+        </div>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-muted); max-width:200px; line-height:1.7;">The Mandala represents cosmic man — Vastu Purusha — whose body maps the directions and elements of a sacred space.</p>
+    </div>
+  </div>
+
+  <div class="divider-line" style="margin: 1rem auto 2rem;"></div>
+  <div class="section-head"><h3>Eight Sacred Directions</h3></div>
+
+  <div class="direction-grid" id="directionGrid"></div>
+
+  <div class="divider-line" style="margin: 2rem auto;"></div>
+  <div class="section-head"><h3>Vasthu Shastra Tips</h3></div>
+
+  <div class="vasthu-tips">
+    <div class="tip-item">
+      <div class="tip-num">01</div>
+      <div class="tip-content">
+        <h5>Main Door Facing East</h5>
+        <p>The entrance should ideally face east (Indra's direction) to welcome the morning sun's energy, bringing health and auspiciousness to the household.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">02</div>
+      <div class="tip-content">
+        <h5>Kitchen in South-East</h5>
+        <p>Agni (fire) governs the south-east corner — the ideal placement for the kitchen. The cook should face east while preparing food.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">03</div>
+      <div class="tip-content">
+        <h5>Master Bedroom South-West</h5>
+        <p>The south-west zone, governed by Nirrti, represents stability and strength — perfect for the master bedroom, ensuring deep sleep and strong relationships.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">04</div>
+      <div class="tip-content">
+        <h5>Pooja Room North-East</h5>
+        <p>Ishanya (north-east) is the most sacred corner — seat of the divine. A pooja room here amplifies spiritual energy throughout the home.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">05</div>
+      <div class="tip-content">
+        <h5>Water in North or East</h5>
+        <p>Underground tanks, wells, and water features should be in the north or north-east to maintain positive water element energy and financial flow.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head"><h3>Our Vasthu Services</h3></div>
+  <div class="info-grid" style="margin-bottom: 4rem;">
+    <div class="info-box">
+      <h4>🏠 Home Vasthu Analysis</h4>
+      <p>Complete evaluation of your home's floor plan against Vastu principles — room placements, door directions, energy flow corridors, and remedies.</p>
+    </div>
+    <div class="info-box">
+      <h4>🏢 Commercial Vasthu</h4>
+      <p>Business premises analysis for shops, offices, and factories. Optimize the spatial energy to attract customers, retain employees, and grow profit.</p>
+    </div>
+    <div class="info-box">
+      <h4>🪟 Plot Selection</h4>
+      <p>Site evaluation before construction — soil testing, direction analysis, surrounding features, and auspicious timings for foundation laying (Bhoomi Pooja).</p>
+    </div>
+    <div class="info-box">
+      <h4>🔧 Dosha Remedies</h4>
+      <p>Non-demolition remedies using Vasthu Yantras, crystals, colours, plants, and strategic rearrangements to correct existing energy imbalances.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-om">🏛️</span>
+    <span>© 2024 Jothidam & Rasa Mani · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">← Back to Home</a></span>
+  </footer>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="closeContactOnBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeContact()">✕</button>
+    <div style="font-size:2rem; margin-bottom:1rem; text-align:center;">ॐ</div>
+    <h3>Contact Us</h3>
+    <p>Reach out for consultations, bead orders, or Vasthu site visits. We're here to guide you.</p>
+
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone / WhatsApp</div>
+        <div class="contact-value">+91 98765 43210</div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">info@jothidamrasamani.com</div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Chennai, Tamil Nadu</div>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <div class="contact-label">Consultation Hours</div>
+        <div class="contact-value">Mon–Sat · 9 AM – 7 PM</div>
+      </div>
+    </div>
+
+    <button onclick="closeContact()" style="width:100%; margin-top:1.5rem; background:var(--gold); color:var(--deep-navy); border:none; padding:0.9rem; font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer;">
+      Book Consultation
+    </button>
+  </div>
+</div>
+
+<script>
+/* ─── PAGE NAVIGATION ─── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ─── STARS ─── */
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 180; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:${Math.random()*0.7+0.1};--d:${(Math.random()*3+1).toFixed(1)}s;animation-delay:${(Math.random()*3).toFixed(1)}s`;
+  starsEl.appendChild(s);
+}
+
+/* ─── ZODIAC DATA ─── */
+const rasidData = [
+  { sym:'♈', en:'Mesha', ta:'மேஷம்', lord:'Sun · Mangal', el:'Fire', info:'Bold and pioneering, Mesha (Aries) is the first sign of the zodiac. Ruled by Mars, those born under this sign are natural leaders with fierce determination.' },
+  { sym:'♉', en:'Rishabha', ta:'ரிஷபம்', lord:'Venus', el:'Earth', info:'Stable and sensual, Rishabha (Taurus) is ruled by Venus. Known for their patience, love of beauty, and strong work ethic.' },
+  { sym:'♊', en:'Mithuna', ta:'மிதுனம்', lord:'Mercury', el:'Air', info:'Communicative and curious, Mithuna (Gemini) is ruled by Mercury. Quick-witted and versatile, they thrive on mental stimulation.' },
+  { sym:'♋', en:'Kataka', ta:'கடகம்', lord:'Moon', el:'Water', info:'Nurturing and intuitive, Kataka (Cancer) is ruled by the Moon. Deeply emotional, they are devoted to family and home.' },
+  { sym:'♌', en:'Simha', ta:'சிம்மம்', lord:'Sun', el:'Fire', info:'Charismatic and regal, Simha (Leo) is ruled by the Sun. Natural performers and leaders who radiate warmth and confidence.' },
+  { sym:'♍', en:'Kanya', ta:'கன்னி', lord:'Mercury', el:'Earth', info:'Analytical and precise, Kanya (Virgo) is ruled by Mercury. Detail-oriented and service-minded, they excel at problem-solving.' },
+  { sym:'♎', en:'Tula', ta:'துலாம்', lord:'Venus', el:'Air', info:'Balanced and harmonious, Tula (Libra) is ruled by Venus. They seek fairness and beauty in all aspects of life.' },
+  { sym:'♏', en:'Vrischika', ta:'விருச்சிகம்', lord:'Mars · Ketu', el:'Water', info:'Intense and transformative, Vrischika (Scorpio) is co-ruled by Mars and Ketu. Magnetic personalities with deep intuition.' },
+  { sym:'♐', en:'Dhanus', ta:'தனுசு', lord:'Jupiter', el:'Fire', info:'Philosophical and adventurous, Dhanus (Sagittarius) is ruled by Jupiter. They seek wisdom, truth, and expansion.' },
+  { sym:'♑', en:'Makara', ta:'மகரம்', lord:'Saturn', el:'Earth', info:'Disciplined and ambitious, Makara (Capricorn) is ruled by Saturn. Persistent achievers who build lasting success.' },
+  { sym:'♒', en:'Kumbha', ta:'கும்பம்', lord:'Saturn · Rahu', el:'Air', info:'Visionary and humanitarian, Kumbha (Aquarius) is co-ruled by Saturn and Rahu. Innovative thinkers ahead of their time.' },
+  { sym:'♓', en:'Meena', ta:'மீனம்', lord:'Jupiter', el:'Water', info:'Spiritual and compassionate, Meena (Pisces) is ruled by Jupiter. Highly empathetic souls with strong psychic intuition.' },
+];
+
+/* ─── BUILD ZODIAC WHEEL ─── */
+const orbit = document.getElementById('zodiacOrbit');
+const container = document.getElementById('wheelContainer');
+rasidData.forEach((r, i) => {
+  const angle = (i / 12) * 360 - 90;
+  const rad = angle * Math.PI / 180;
+  const cx = 240, cy = 240, radius = 190;
+  const x = cx + radius * Math.cos(rad);
+  const y = cy + radius * Math.sin(rad);
+
+  const item = document.createElement('div');
+  item.className = 'zodiac-sign-item';
+  item.style.cssText = `left:${x - 32}px; top:${y - 32}px;`;
+  item.innerHTML = `<span class="sign-symbol">${r.sym}</span><span class="sign-name">${r.ta}</span>`;
+  item.onclick = () => showSign(r);
+  orbit.appendChild(item);
+});
+
+function showSign(r) {
+  document.getElementById('detailSymbol').textContent = r.sym;
+  document.getElementById('detailName').textContent = `${r.en} · ${r.ta}`;
+  document.getElementById('detailInfo').textContent = `${r.info} Element: ${r.el}. Ruling Planet: ${r.lord}.`;
+}
+
+/* ─── BUILD RASI GRID ─── */
+const rasiGrid = document.getElementById('rasiGrid');
+rasidData.forEach(r => {
+  const card = document.createElement('div');
+  card.className = 'rasi-card';
+  card.innerHTML = `<span class="rasi-symbol">${r.sym}</span><div class="rasi-name-en">${r.en}</div><div class="rasi-name-ta">${r.ta}</div><div class="rasi-lord">☽ ${r.lord}</div>`;
+  card.onclick = () => { showPage('astrology'); showSign(r); };
+  rasiGrid.appendChild(card);
+});
+
+/* ─── RASA MANI DATA ─── */
+const beadInfo = {
+  health: { h: 'Health & Longevity', p: 'Rasa Mani (mercury beads) emit subtle vibrations that strengthen the body\'s natural healing energy. Worn as a pendant, they regulate the body\'s electromagnetic field, improve immunity, and bring vitality. Ancient Siddha texts describe purified mercury as the essence of the five elements.' },
+  wealth: { h: 'Wealth & Prosperity', p: 'According to Siddha tradition, Rasa Mani activates the Lakshmi principle — the cosmic flow of abundance. Wearing it near the heart chakra is said to dissolve financial blockages and attract wealth opportunities through positive cosmic alignment.' },
+  protection: { h: 'Divine Protection', p: 'The solidified mercury bead creates an energetic shield around the wearer. Charged with protective mantras, it is said to ward off negative energies, evil eye (drishti), and psychic disturbances, keeping the aura pure and strong.' },
+  spiritual: { h: 'Spiritual Growth', p: 'Rasa Mani is the supreme tool in Siddha Yoga for awakening Kundalini energy. Its subtle mercury vibrations are believed to open the Sahasrara (crown chakra), accelerating meditation, intuition, and one\'s spiritual path toward self-realization.' },
+  planetary: { h: 'Planetary Balance', p: 'Each planetary bead is attuned to a specific Navagraha. Wearing the correct bead for your weak or malefic planet can mitigate its negative effects while strengthening its positive qualities, creating cosmic harmony in your life.' },
+};
+
+function showBeadInfo(key, event) {
+  const d = beadInfo[key];
+  document.getElementById('beadInfoPanel').innerHTML = `<h3>${d.h}</h3><p>${d.p}</p>`;
+  document.querySelectorAll('.benefit-pill').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+/* ─── PLANET BEADS ─── */
+const planets = [
+  { name:'Surya', ta:'சூரியன்', bead:'Ruby', color:'#FF6B6B', bg:'rgba(255,107,107,0.2)', icon:'☀️' },
+  { name:'Chandra', ta:'சந்திரன்', bead:'Pearl', color:'#E8E8E8', bg:'rgba(232,232,232,0.15)', icon:'🌙' },
+  { name:'Kuja', ta:'செவ்வாய்', bead:'Coral', color:'#FF4500', bg:'rgba(255,69,0,0.2)', icon:'♂️' },
+  { name:'Budha', ta:'புதன்', bead:'Emerald', color:'#50C878', bg:'rgba(80,200,120,0.2)', icon:'☿' },
+  { name:'Guru', ta:'குரு', bead:'Yellow Sapphire', color:'#FFD700', bg:'rgba(255,215,0,0.2)', icon:'♃' },
+  { name:'Shukra', ta:'சுக்கிரன்', bead:'Diamond', color:'#B9F2FF', bg:'rgba(185,242,255,0.2)', icon:'♀️' },
+  { name:'Shani', ta:'சனி', bead:'Blue Sapphire', color:'#4169E1', bg:'rgba(65,105,225,0.2)', icon:'♄' },
+  { name:'Rahu', ta:'ராகு', bead:'Hessonite', color:'#8B4513', bg:'rgba(139,69,19,0.2)', icon:'☊' },
+  { name:'Ketu', ta:'கேது', bead:'Cat\'s Eye', color:'#9932CC', bg:'rgba(153,50,204,0.2)', icon:'☋' },
+];
+
+const planetBeadsEl = document.getElementById('planetBeads');
+planets.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'planet-bead-card';
+  card.innerHTML = `
+    <div class="planet-bead-gem" style="background:${p.bg}; border: 1px solid ${p.color}30;">
+      <span style="font-size:1.5rem">${p.icon}</span>
+    </div>
+    <div class="planet-name">${p.name}</div>
+    <div class="planet-ta">${p.ta}</div>
+    <span class="bead-color-tag">${p.bead}</span>
+  `;
+  planetBeadsEl.appendChild(card);
+});
+
+/* Orbit beads around main bead */
+const beadCanvas = document.getElementById('beadCanvas');
+planets.slice(0, 8).forEach((p, i) => {
+  const angle = (i / 8) * 360;
+  const rad = angle * Math.PI / 180;
+  const cx = 200, cy = 200, r = 140;
+  const x = cx + r * Math.cos(rad);
+  const y = cy + r * Math.sin(rad);
+  const bead = document.createElement('div');
+  bead.className = 'orbit-bead';
+  bead.style.cssText = `left:${x - 12}px; top:${y - 12}px; background:${p.bg}; border:1px solid ${p.color}; transform-origin: center; animation: counter-spin 20s linear infinite;`;
+  bead.innerHTML = p.icon;
+  bead.title = p.name;
+  beadCanvas.appendChild(bead);
+});
+
+/* ─── VASTHU GRID ─── */
+const vastuData = [
+  ['Ishanya','N-E','','','','','','','Vayu'],
+  ['','Isa','Parjanya','Diti','Aditi','Apa','Savitri','Savitri',''],
+  ['','Rudra','','','','','','Brhat',''],
+  ['Soma','Rajyaksh','','','','','','Yama','Agni'],
+  ['','','','Brahma','Brahma','Brahma','','',''],
+  ['','','','Brahma','ब्रह्म','Brahma','','',''],
+  ['','Mitra','','','','','','Grha',''],
+  ['','Apavasta','','','','','','Vitatha',''],
+  ['Nairrti','','','','','','','','Agni'],
+];
+
+const vastuGrid = document.getElementById('vastuGrid');
+vastuData.forEach((row, ri) => {
+  row.forEach((cell, ci) => {
+    const div = document.createElement('div');
+    div.className = 'vastu-cell';
+    if (cell === 'ब्रह्म' || cell === 'Brahma') div.className += ' brahma';
+    if (ri === 0 || ri === 8 || ci === 0 || ci === 8) div.className += ' corner';
+    if (cell && cell !== 'Brahma') div.className += ' highlight';
+    div.textContent = cell === 'ब्रह्म' ? '✦' : cell.substring(0, 7);
+    vastuGrid.appendChild(div);
+  });
+});
+
+/* ─── DIRECTION DATA ─── */
+const directions = [
+  { icon:'🌅', name:'East · கிழக்கு', deity:'Indra', desc:'The direction of the rising sun. Main entrance here brings health, wealth, and positive energy from the sun god Indra.' },
+  { icon:'🔥', name:'South-East · தென்கிழக்கு', deity:'Agni', desc:'Governed by Agni, the fire god. Ideal for kitchen and fire-related activities. Brings transformation and energy.' },
+  { icon:'☀️', name:'South · தெற்கு', deity:'Yama', desc:'Domain of Yama (death). Heavier structures, storage, and master bedroom here bring stability and grounded energy.' },
+  { icon:'🌿', name:'South-West · தென்மேற்கு', deity:'Nirrti', desc:'Corner of stability (Nirrti). Best for master bedroom and heavy furniture. Strengthens relationships and health.' },
+  { icon:'💧', name:'West · மேற்கு', deity:'Varuna', desc:'Varuna governs water and the west. Good for dining area and study room. Brings clarity and fulfillment.' },
+  { icon:'🌬️', name:'North-West · வடமேற்கு', deity:'Vayu', desc:'Vayu (wind) governs north-west. Suitable for guests, store rooms. Governs movement and social connections.' },
+  { icon:'💰', name:'North · வடக்கு', deity:'Kubera', desc:'Kubera (wealth god) governs north. Ideal for study, treasury, and office. Opens pathways to financial abundance.' },
+  { icon:'🙏', name:'North-East · வடகிழக்கு', deity:'Ishanya', desc:'The most sacred corner — Ishanya (Shiva). Reserved for the prayer room. Divine energy flows strongest here.' },
+];
+
+const dirGrid = document.getElementById('directionGrid');
+directions.forEach(d => {
+  const card = document.createElement('div');
+  card.className = 'dir-card';
+  card.innerHTML = `
+    <div class="dir-header">
+      <span class="dir-icon">${d.icon}</span>
+      <span class="dir-name">${d.name}</span>
+    </div>
+    <div class="dir-deity">Deity: ${d.deity}</div>
+    <div class="dir-desc">${d.desc}</div>
+  `;
+  dirGrid.appendChild(card);
+});
+
+/* ─── CONTACT MODAL ─── */
+function openContact() { document.getElementById('contactModal').classList.add('open'); }
+function closeContact() { document.getElementById('contactModal').classList.remove('open'); }
+function closeContactOnBg(e) { if (e.target.id === 'contactModal') closeContact(); }
+</script>
+</body>
+</html>
